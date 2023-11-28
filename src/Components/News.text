@@ -1,0 +1,68 @@
+// import React, { useState, useEffect } from 'react';
+// import NewItem from './NewItem';
+// import Spinner from './Spinner';
+// import PropTypes from 'prop-types';
+// import InfiniteScroll from "react-infinite-scroll-component";
+
+// const News = (props) => {
+//     const [state, setState] = useState({ articles: [], loading: true, totalResults: 0 });
+//     const [page, setPage] = useState(1);
+
+//     async function fetchData() {
+//         document.title = `A-Znews -  ${[...props.category][0].toUpperCase() + [...props.category].slice(1).join('')} news`;
+//         const url = `https://newsapi.org/v2/top-headlines?category=${props.category}&country=in&apiKey=d6d8a4bd769847d8a6e0bc5d97cce2e7&page=${page}`;
+//         let data = await fetch(url);
+//         let parsedData = await data.json();
+//         setState({ articles: state.articles.concat(parsedData.articles), loading: false, totalResults: parsedData.totalResults });
+//     }
+
+//     useEffect(() => {
+//         fetchData();
+//         // eslint-disable-next-line
+//     }, []);
+
+//     const fetchMoreData = async () => {
+//         // Use the function form of setState to access the latest state
+//         setPage((currentPage) => currentPage + 1);
+//         const url = `https://newsapi.org/v2/top-headlines?category=${props.category}&country=in&apiKey=d6d8a4bd769847d8a6e0bc5d97cce2e7&page=${page}`;
+//         let data = await fetch(url);
+//         let parsedData = await data.json();
+//         setState((prevState) => ({
+//             articles: prevState.articles.concat(parsedData.articles),
+//             loading: false,
+//             totalResults: parsedData.totalResults
+//         }));
+//     };
+
+//     return (
+//         <div>
+//             <h2 className='text-center my-4'>A-Znews - Top Headlines of Today</h2>
+
+//             <InfiniteScroll
+//                 dataLength={state.articles.length}
+//                 next={fetchMoreData}
+//                 hasMore={state.articles.length !== state.totalResults}
+//                 loader={<Spinner />}>
+//                 <div className="container">
+//                     <div className="row">
+//                         {state.articles.map((article) => (
+//                             <div className="col-md-4" key={article.url}>
+//                                 <NewItem title={article.title} description={article.description} image={article.urlToImage} url={article.url} author={article.author} date={article.publishedAt} />
+//                             </div>
+//                         ))}
+//                     </div>
+//                 </div>
+//             </InfiniteScroll>
+//         </div>
+//     );
+// };
+
+// News.defaultProps = {
+//     category: 'general'
+// };
+
+// News.propTypes = {
+//     category: PropTypes.string
+// };
+
+// export default News;
